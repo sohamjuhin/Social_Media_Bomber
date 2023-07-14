@@ -74,4 +74,19 @@ def attack():
     messageLink.click()
 
     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/section[2]/div[2]/div/div/div/div/aside/div[2]/div[2]/div/div/div/div/div[1]/div'))).click()
-   
+    MsgBx = driver.find_element_by_css_selector('#react-root > div > div > div.css-1dbjc4n.r-18u37iz.r-13qz1uu.r-417010 > main > div > div > div > section:nth-child(2) > div.css-1dbjc4n.r-1pz39u2.r-13awgt0 > div > div > div > div > aside > div.css-1dbjc4n.r-obd0qt.r-18u37iz.r-1uu6nss.r-13qz1uu > div.css-1dbjc4n.r-1kihuf0.r-16y2uox.r-1wbh5a2 > div > div > div > div > div.css-901oao.r-jwli3a.r-6koalj.r-16y2uox.r-1qd0xha.r-a023e6.r-16dba41.r-ad9z0x.r-bcqeeo.r-qvutc0 > div > div > div > div.DraftEditor-editorContainer > div > div > div > div')
+
+    Ops = int(input("Select what form of message you would like to send:\n1. Enter [1] to send a manual message\n2. Enter [2] to import a text file: "))
+    if Ops == 1:
+        Content = input("Enter the message: ")
+    elif Ops == 2:
+        fileLoc = input("Enter the file location: ")
+        with open(fileLoc, 'r') as file:
+            Content = file.read()
+
+    instances = int(input("Enter the total message count: "))
+
+    bombMsg(instances, Content)
+
+banner()
+attack()
